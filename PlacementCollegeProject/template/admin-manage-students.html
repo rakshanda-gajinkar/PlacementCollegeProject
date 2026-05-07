@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Admin</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-add-job.html">Add Job</a></li>
+                <li><a href="admin-manage-students.html" class="active">Manage Students</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Manage Students</h1>
+                <p>View and manage registered student details.</p>
+            </div>
+
+            <div class="table-box">
+                <h2>Student Records</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>CGPA</th>
+                        <th>Skills</th>
+                    </tr>
+                    
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.dept }}</td>
+                        <td>{{ student.cgpa }}</td>
+                        <td>{{ student.skills }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No student records found.</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

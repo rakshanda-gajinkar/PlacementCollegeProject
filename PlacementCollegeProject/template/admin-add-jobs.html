@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Admin</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-add-job.html" class="active">Add Job</a></li>
+                <li><a href="admin-manage-students.html">Manage Students</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Add Job</h1>
+                <p>Create new job opportunities for students.</p>
+            </div>
+
+            <div class="profile-box">
+                <h2>Job Details</h2>
+                <form method="POST">
+                    {% csrf_token %} <input type="text" name="company_name" placeholder="Company Name" required>
+                    <input type="text" name="job_role" placeholder="Job Role" required>
+                    <input type="text" name="package" placeholder="Package (e.g. ₹4.5 LPA)" required>
+                    <input type="text" name="eligibility" placeholder="Eligibility Criteria" required>
+                    <textarea name="description" rows="5" placeholder="Job Description"></textarea>
+                    
+                    <button type="submit">Post Job</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="{% static 'JS/script.js' %}"></script>
+</body>
+</html>

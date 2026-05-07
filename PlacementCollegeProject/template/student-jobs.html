@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'student_profile' %}">Profile</a></li>
+            <li><a href="{% url 'student_jobs' %}" class="active">Job Listings</a></li>
+            <li><a href="{% url 'student_applied' %}">Applied Jobs</a></li>
+            <li><a href="{% url 'index' %}"> logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Job Listings</h1>
+            <p>Explore available placement opportunities.</p>
+        </div>
+
+        <div class="job-list">
+           {% for job in available_jobs %}
+           <div class="job-card">
+            <h3>{{ job.company_name }}</h3>
+            <p><strong>Package:</strong> {{ job.package }}</p>
+            <p><strong>Eligibility:</strong>{{ job.elligibility }}</p>
+            <form method="POST" action="{% url 'apply_job' job.id %}">
+                {%csrf_token %}
+                <button type="submit" class="apply-btn">Apply Now</button>
+            </form>
+           </div>
+
+           {% empty %}
+           
+           <div class="job-card">
+            <p>No job openings are available at the moment. </p>
+           </div>
+
+           {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'JS/script.js' %}"></script>
+</body>
+</html>

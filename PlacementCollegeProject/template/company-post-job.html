@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Company</h2>
+        <ul>
+            <li><a href="{% url 'company_dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'company_post_job' %}">Post Job</a></li>
+            <li><a href="{% 'company_applicants' %}" class="active">Applicants</a></li>
+            <li><a href="{% url 'index' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Post Job</h1>
+            <p>Create and publish new recruitment openings.</p>
+        </div>
+
+        <div class="profile-box">
+            <h2>Job Posting Form</h2>
+            <form method="POST" {% csrf_token %} onsubmit="submitForm(event, 'Company job posted successfully!')">
+                <input type="text" name="company_name " placeholder="Company Name" required>
+                <input type="text" name="job_role" placeholder="Job Role" required>
+                <input type="text" name="package" placeholder="Package Offered" required>
+                <input type="text" name="elligibility" placeholder="Eligibility" required>
+                <textarea rows="5" placeholder="Job Description"></textarea>
+                <button type="submit">Post Job</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'JS/script.js' %}"></script>
+</body>
+</html>

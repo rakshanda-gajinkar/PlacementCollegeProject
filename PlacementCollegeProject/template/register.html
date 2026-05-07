@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Placement Cell</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <h1>Register</h1>
+        <p>Create your account</p>
+
+        <form  method="POST" >{%csrf_token %} onsubmit="submitForm(event, 'Registration successful!')">
+            <input type="text" name="full_name" placeholder="Full Name / Company Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+
+            <select required>
+                <option value="" disabled selected>Select User Type</option>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+                <option value="company">Company</option>
+            </select>
+
+            <input type="password" name="password" placeholder="Create Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="auth-link">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+            <p style="margin-top: 10px;"><a href="index.html">← Back to Home</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'JS/script.js' %}"></script>
+</body>
+</html>

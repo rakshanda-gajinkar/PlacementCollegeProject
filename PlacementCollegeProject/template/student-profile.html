@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'student_profile' %}">Profile</a></li>
+            <li><a href="{% url 'student_jobs' %}" class="active">Job Listings</a></li>
+            <li><a href="{% url 'student_applied' %}">Applied Jobs</a></li>
+            <li><a href="{% url 'index' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Profile Page</h1>
+            <p>Update your academic and personal details.</p>
+        </div>
+
+        <div class="profile-box">
+            <h2>Student Information</h2>
+            <form method="POST" onsubmit="saveProfile(event)">
+                {% csrf_token %}
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Full Name" value="{{ student.name }}" required>
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email" value="{{ student.email }}" readonly>
+                <label>Department</label>
+                <input type="text" name="dept" value="{{ student.dept }}" required>
+                <label>CGPA</label>
+                <input type="text" name="cgpa" placeholder="CGPA" value="{{ student.cgpa }}" required>
+                <label>Skills</label>
+                <textarea rows="4" name="skills" placeholder="Skills">{{ student.skills }}</textarea>
+                <button type="submit">Save Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'JS/script.js' %}"></script>
+</body>
+</html>

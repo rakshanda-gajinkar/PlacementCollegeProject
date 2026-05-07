@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell Management System</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>Placement Cell</h2>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Placement Cell Management System</h1>
+            <p>
+                A centralized platform for Students, Admins, and Companies to manage placements,
+                job postings, applications, and recruitment activities in one place.
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'register' %}"class="btn btn-outline">Register</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <h3>System Modules</h3>
+            <ul>
+                <li>✔ Student Dashboard & Job Applications</li>
+                <li>✔ Admin Management Panel</li>
+                <li>✔ Company Job Posting & Applicant Tracking</li>
+                <li>✔ Centralized Placement Workflow</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <h2>Main Users</h2>
+        <p>The system is designed for three major users.</p>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h3>Student</h3>
+            <p>Students can build profiles, view job openings, apply for jobs, and track applications.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Admin</h3>
+            <p>Admins can manage students, post opportunities, verify records, and monitor placements.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Company</h3>
+            <p>Companies can post jobs, view student applicants, and shortlist suitable candidates.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Placement Cell Management System</p>
+</footer>
+
+</body>
+</html>
