@@ -14,23 +14,24 @@
         <h1>Login</h1>
         <p>Access your dashboard</p>
 
-        <form method="POST" {%csrf_token %} onsubmit="submitForm(event, 'Login successful!')">
-            <select required>
-                <option value=""disbled selected>Select User Type</option>
-                <option value="student">Student</option>
-                <option value="admin">Admin</option>
-                <option value="company">Company</option>
-            </select>
+       <form method="POST" action="{% url 'login' %}" onsubmit="return submitForm(event, 'Login successful!')">
+    {% csrf_token %}
+    <select name="user_type" required>
+        <option value="" disabled selected>Select User Type</option>
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+        <option value="company">Company</option>
+    </select>
 
-            <input type="email" name="email" placeholder="Enter Email" required>
-            <input type="password" name="password" placeholder="Enter Password" required>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <input type="password" name="password" placeholder="Enter Password" required>
 
-            <button type="submit">Login</button>
-        </form>
+    <button type="submit">Login</button>
+</form>
 
         <div class="auth-link">
-            <p>Don't have an account? <a href="register.html">Register</a></p>
-            <p style="margin-top: 10px;"><a href="index.html">← Back to Home</a></p>
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            <p style="margin-top: 10px;"><a href="{% url 'index' %}">← Back to Home</a></p>
         </div>
     </div>
 </div>

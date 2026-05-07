@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +13,10 @@
         <div class="sidebar">
             <h2>Admin</h2>
             <ul>
-                <li><a href="admin-dashboard.html">Dashboard</a></li>
-                <li><a href="admin-add-job.html">Add Job</a></li>
-                <li><a href="admin-manage-students.html" class="active">Manage Students</a></li>
-                <li><a href="index.html">Logout</a></li>
+                <li><a href="{% url 'admin-dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'admin-add-job' %}">Add Job</a></li>
+                <li><a href="{% url 'admin-manage-students' %}" class="active">Manage Students</a></li>
+                <li><a href="{% url 'index' %} ">Logout</a></li>
             </ul>
         </div>
 

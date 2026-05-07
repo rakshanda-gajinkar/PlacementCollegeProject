@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
         <ul>
             <li><a href="{% url 'company_dashboard' %}">Dashboard</a></li>
             <li><a href="{% url 'company_post_job' %}">Post Job</a></li>
-            <li><a href="{% 'company_applicants' %}" class="active">Applicants</a></li>
+            <li><a href="{% url 'company_applicants' %}" class="active">Applicants</a></li>
             <li><a href="{% url 'index' %}">Logout</a></li>
         </ul>
     </div>

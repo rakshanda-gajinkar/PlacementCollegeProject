@@ -61,6 +61,7 @@ def login_view(request):
                 return redirect('company_dashboard')
             else:
                 return redirect('student_dashboard')
+                return render(request,'login.html')
         else:
             messages.error(request, "Invalid email or password.")
             return render(request, 'login.html')
@@ -71,3 +72,16 @@ def login_view(request):
 #3.update api/views.py
 def index(request):
     return render(request,'index.html')
+
+#4. Student module functions
+def student_dashboard(request):
+    return render(request, 'student-dashboard.html')
+
+def student_profile(request):
+    return render(request, 'student-profile.html')
+
+def student_jobs(request):
+    return render(request, 'student-jobs.html')
+
+def student_applied(request):
+    return render(request, 'student-applied.html')
