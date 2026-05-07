@@ -8,6 +8,7 @@ function saveProfile(event) {
 }
 
 function submitForm(event, message) {
-    event.preventDefault();
+    // event.preventDefault();
     alert(message);
+    return true;
 }

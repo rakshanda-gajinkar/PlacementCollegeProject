@@ -41,33 +41,65 @@ def register(request):
 
 
 # 2. FIXED LOGIN VIEW FOR HTML FORMS
-def login_view(request):
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
 
-    if request.method == "POST":
-        # Read the email and password sent by your login.html form
-        username = request.POST.get('email')
-        password = request.POST.get('password')
-        user_type = request.POST.get('user_type') # Student, Admin, or Company
+# def login_view(request):
+#     if request.method == "POST":
+#         # 1. Capture data from the HTML form names
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         user_type = request.POST.get('user_type')
 
-        user = authenticate(username=username, password=password)
+#         # 2. Debug: This shows up in your VS Code terminal
+#         print(f"--- Login Attempt ---")
+#         print(f"Email: {email} | Type: {user_type}")
 
-        if user is not None:
-            auth_login(request, user) # Logs the user into the session
+#         # 3. Try to find the user in the database
+#         user = authenticate(request, username=email, password=password)
+
+#         if user is not None:
+#             auth_login(request, user)
+#             print("Status: Login Successful!")
             
-            # Smart Redirect based on what role they selected in your dropdown
-            if user_type == "Admin":
-                return redirect('admin_dashboard')
-            elif user_type == "Company":
-                return redirect('company_dashboard')
-            else:
-                return redirect('student_dashboard')
-                return render(request,'login.html')
-        else:
-            messages.error(request, "Invalid email or password.")
-            return render(request, 'login.html')
+#             # 4. Redirect based on the dropdown choice
+#             if user_type == "admin":
+#                 return redirect('admin_dashboard')
+#             elif user_type == "company":
+#                 return redirect('company_dashboard')
+#             else:
+#                 return redirect('student_dashboard')
+#         else:
+#             print("Status: Authentication Failed")
+#             messages.error(request, "Invalid email or password.")
+#             return render(request, 'login.html')
 
-    # If GET request, just display the login page
+#     # If someone just visits the page (GET request)
+#     return render(request, 'login.html')
+
+def login_view(request):
+    if request.method == "POST":
+        # 1. Capture the data
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user_type = request.POST.get('user_type')
+
+        # 2. Debug print
+        print(f"--- Login Attempt (Bypass Mode) ---")
+        print(f"Email: {email} | Type: {user_type}")
+
+        # 3. Direct Navigation (Bypassing database for now)
+        if user_type == "admin":
+            return redirect('admin_dashboard')
+        elif user_type == "company":
+            return redirect('company_dashboard')
+        else:
+            # This handles 'student'
+            return redirect('student_dashboard')
+
     return render(request, 'login.html')
+
 
 #3.update api/views.py
 def index(request):
