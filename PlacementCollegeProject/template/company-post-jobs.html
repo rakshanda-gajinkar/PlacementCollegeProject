@@ -14,9 +14,9 @@
         <h2>Company</h2>
         <ul>
             <li><a href="{% url 'company_dashboard' %}">Dashboard</a></li>
-            <li><a href="{% url 'company_post_job' %}">Post Job</a></li>
+            <li><a href="{% url 'company_post_jobs' %}">Post Job</a></li>
             <li><a href="{% url 'company_applicants' %}" class="active">Applicants</a></li>
-            <li><a href="{% url 'index' %}">Logout</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
 
@@ -28,7 +28,7 @@
 
         <div class="profile-box">
             <h2>Job Posting Form</h2>
-            <form method="POST" {% csrf_token %} onsubmit="submitForm(event, 'Company job posted successfully!')">
+            <form method="POST" action="{% url 'login' %}" onsubmit="submitForm(event, 'Company job posted successfully!')">
                 <input type="text" name="company_name " placeholder="Company Name" required>
                 <input type="text" name="job_role" placeholder="Job Role" required>
                 <input type="text" name="package" placeholder="Package Offered" required>

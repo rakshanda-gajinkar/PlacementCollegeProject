@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 
 # 1. FIXED REGISTER VIEW FOR HTML FORMS
@@ -105,6 +105,7 @@ def login_view(request):
 def index(request):
     return render(request,'index.html')
 
+
 #4. Student module functions
 def student_dashboard(request):
     return render(request, 'student-dashboard.html')
@@ -117,3 +118,29 @@ def student_jobs(request):
 
 def student_applied(request):
     return render(request, 'student-applied.html')
+
+
+#5. Admin module functions
+def admin_dashboard(request):
+    return render(request, 'admin-dashboard.html')
+
+def admin_add_jobs(request):
+    return render(request, 'admin-add-jobs.html')
+
+def admin_manage_students(request):
+    return render(request, 'admin-manage-students.html')
+
+#6. Company module functions
+def company_dashboard(request):
+    return render(request, 'company-dashboard.html')
+
+def company_post_jobs(request):
+    return render(request, 'company-post-jobs.html')
+
+def company_applicants(request):
+    return render(request, 'company-applicants.html')
+
+#7. logout redirecting to index/home  page
+def logout_view(request):
+    auth_logout(request)
+    return redirect('index')
