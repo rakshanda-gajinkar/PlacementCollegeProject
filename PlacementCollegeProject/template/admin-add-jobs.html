@@ -16,7 +16,7 @@
                 <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
                 <li><a href="{% url 'admin_add_jobs' %}" class="active">Add Job</a></li>
                 <li><a href="{% url 'admin_manage_students' %}">Manage Students</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'index' %}">Logout</a></li>
             </ul>
         </div>
 
@@ -29,7 +29,8 @@
             <div class="profile-box">
                 <h2>Job Details</h2>
                 <form method="POST">
-                    {% csrf_token %} <input type="text" name="company_name" placeholder="Company Name" required>
+                    {% csrf_token %}
+                    <input type="text" name="company_name" placeholder="Company Name" required>
                     <input type="text" name="job_role" placeholder="Job Role" required>
                     <input type="text" name="package" placeholder="Package (e.g. ₹4.5 LPA)" required>
                     <input type="text" name="eligibility" placeholder="Eligibility Criteria" required>
