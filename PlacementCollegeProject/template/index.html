@@ -1,73 +1,40 @@
-{% load static %} <!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placement Cell Management System</title>
-    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <title>CareerFlow | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="{% url 'index' %}" class="logo">CareerFlow</a>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}" style="background: var(--primary); color: white; padding: 10px 25px; border-radius: 5px;">Log In</a></li>
+        </ul>
+    </nav>
 
-<nav class="navbar">
-    <h2>Placement Cell</h2>
-    <ul>
-        <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'register' %}">Register</a></li>
-    </ul>
-</nav>
+    <header class="hero">
+        <h1>Find Your Dream Job Today</h1>
+        <p>Browse through thousands of placement opportunities from top MNCs</p>
+    </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Placement Cell Management System</h1>
-            <p>
-                A centralized platform for Students, Admins, and Companies to manage placements,
-                job postings, applications, and recruitment activities in one place.
-            </p>
-            <div class="hero-buttons">
-                <a href="{% url 'login' %}" class="btn">Login</a>
-                <a href="{% url 'register' %}"class="btn btn-outline">Register</a>
+    <div class="job-container">
+        <h2 style="margin-bottom: 30px; text-align: center;">Recent Job Openings</h2>
+        <div class="job-grid">
+            <div class="job-card">
+                <img src="https://via.placeholder.com/60" alt="Company" style="border-radius: 8px; margin-bottom: 15px;">
+                <h3>Full Stack Developer</h3>
+                <p style="color: #64748b; margin: 5px 0;">Google India</p>
+                <p>Eligibility: 70% in B.Com/BCA</p>
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 700; color: var(--success);">₹12.5 LPA</span>
+                    <a href="{% url 'login' %}" style="color: var(--primary); text-decoration: none; font-weight: 600;">View Details</a>
+                </div>
             </div>
         </div>
-
-        <div class="hero-image">
-            <h3>System Modules</h3>
-            <ul>
-                <li>✔ Student Dashboard & Job Applications</li>
-                <li>✔ Admin Management Panel</li>
-                <li>✔ Company Job Posting & Applicant Tracking</li>
-                <li>✔ Centralized Placement Workflow</li>
-            </ul>
-        </div>
     </div>
-</section>
-
-<section class="section">
-    <div class="section-title">
-        <h2>Main Users</h2>
-        <p>The system is designed for three major users.</p>
-    </div>
-
-    <div class="features">
-        <div class="feature-card">
-            <h3>Student</h3>
-            <p>Students can build profiles, view job openings, apply for jobs, and track applications.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Admin</h3>
-            <p>Admins can manage students, post opportunities, verify records, and monitor placements.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Company</h3>
-            <p>Companies can post jobs, view student applicants, and shortlist suitable candidates.</p>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <p>© 2026 Placement Cell Management System</p>
-</footer>
-
 </body>
 </html>

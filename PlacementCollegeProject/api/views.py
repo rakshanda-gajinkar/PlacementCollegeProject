@@ -4,41 +4,38 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib import messages
 
 # 1. FIXED REGISTER VIEW FOR HTML FORMS
+# Replace your old register function with this:
 def register(request):
     if request.method == "POST":
-        # Read from standard HTML form inputs using your exact 'name' attributes
-        # Since your current form inputs don't have name tags, Django will use their type/placeholder map:
-        full_name = request.POST.get('full_name') 
-        email = request.POST.get('email') or request.POST.get('username')
-        phone = request.POST.get('phone')
-        user_type = request.POST.get('user_type')
-        password = request.POST.get('password')
+        u_type = request.POST.get('user_type')
+        u_name = request.POST.get('username')
+        u_email = request.POST.get('email')
+        u_pass = request.POST.get('password')
+        
+        # 1. Create the base User
+        new_user = User.objects.create_user(username=u_name, email=u_email, password=u_pass)
 
-        # Use email as the standard Django username field
-        username = email 
-
-        if not username or not password:
-            messages.error(request, "Email and Password are required.")
-            return render(request, 'register.html')
-
-        # Check if user already exists
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "A user with this email already exists.")
-            return render(request, 'register.html')
-
-        # Create the standard user object
-        user = User.objects.create_user(username=username, password=password)
-        user.first_name = full_name if full_name else ""
-        user.save()
-
-        # OPTIONAL VIVA TIP: In a full setup, you'd save 'user_type' and 'phone' to a custom Profile model here.
+        # 2. Logic based on User Type
+        if u_type == "student":
+            StudentProfile.objects.create(
+                user=new_user,
+                phone=request.POST.get('phone'),
+                course=request.POST.get('course'),
+                percentage=request.POST.get('percentage') or 0,
+                skills=request.POST.get('skills'),
+                resume=request.FILES.get('resume') # Handles the PDF
+            )
+        elif u_type == "company":
+            CompanyProfile.objects.create(
+                user=new_user,
+                company_name=u_name, # Using username as default company name
+                contact_number=request.POST.get('phone')
+            )
 
         messages.success(request, "Registration successful! Please login.")
-        return redirect('login') # Sends them straight to the login page
+        return redirect('login')
 
-    # If GET request, just display the registration page
     return render(request, 'register.html')
-
 
 # 2. FIXED LOGIN VIEW FOR HTML FORMS
 from django.shortcuts import render, redirect
