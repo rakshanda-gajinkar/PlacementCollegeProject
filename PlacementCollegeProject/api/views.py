@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
+from .models import StudentProfile, CompanyProfile
 
 # 1. FIXED REGISTER VIEW FOR HTML FORMS
 # Replace your old register function with this:
@@ -29,7 +30,7 @@ def register(request):
             CompanyProfile.objects.create(
                 user=new_user,
                 company_name=u_name, # Using username as default company name
-                contact_number=request.POST.get('phone')
+                phone=request.POST.get('phone')
             )
 
         messages.success(request, "Registration successful! Please login.")

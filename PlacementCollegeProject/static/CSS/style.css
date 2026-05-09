@@ -74,3 +74,20 @@ body { background-color: var(--light); }
     display: none; /* Hidden until Student is selected */
     background: #f8fafc; padding: 15px; border-radius: 8px; margin-top: 10px;
 }
+/* Fix for the Recent Job Openings section */
+.job-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centers the cards */
+    padding: 20px;
+}
+
+.job-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px; /* Gives cards a consistent width */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
