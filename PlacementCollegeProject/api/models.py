@@ -20,7 +20,7 @@ class CompanyProfile(models.Model):
     company_name = models.CharField(max_length=200)
     website = models.URLField(blank=True)
     industry = models.CharField(max_length=100, default="IT")
-
+    phone = models.CharField(max_length=15)
     def __str__(self):
         return self.company_name
 

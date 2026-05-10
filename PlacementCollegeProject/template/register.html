@@ -31,20 +31,30 @@
                     <label style="color: #64748b; font-size: 0.8rem; display: block; margin-top: 10px;">Upload Resume (PDF only):</label>
                     <input type="file" name="resume" accept=".pdf">
                 </div>
-
-                <input type="password" name="password" placeholder="Create Password" required>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-
+                <div id="company-fields" style="display: none;">
+                    <input type="text" name="company_name" placeholder="Official Company Name" >
+                    <input type="text" name="website" placeholder="Website (Optional)">
+                    <input type="text" name="industry" placeholder="Industry (e.g., IT, Finance)">
+                    <input type="text" name="phone" placeholder="Company Contact Number" >
+                </div>
                 <button type="submit">Register</button>
             </form>
         </div>
     </div>
 
     <script>
-    function toggleFields() {
+        function toggleFields() {
         var userType = document.getElementById("user_type").value;
-        var studentSection = document.getElementById("student-fields");
-        studentSection.style.display = (userType === "student") ? "block" : "none";
+        var studentDiv = document.getElementById("student-fields");
+        var companyDiv = document.getElementById("company-fields");
+
+        if (userType === "student") {
+            studentDiv.style.display = "block";
+            companyDiv.style.display = "none";
+        } else if (userType === "company") {
+            studentDiv.style.display = "none";
+            companyDiv.style.display = "block";
+        }
     }
     </script>
 </body>

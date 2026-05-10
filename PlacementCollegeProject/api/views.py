@@ -13,10 +13,10 @@ def register(request):
         u_email = request.POST.get('email')
         u_pass = request.POST.get('password')
         
-        # 1. Create the base User
+        # 1. Create the Base User
         new_user = User.objects.create_user(username=u_name, email=u_email, password=u_pass)
-
-        # 2. Logic based on User Type
+        
+        # 2. Handle Student Registration
         if u_type == "student":
             StudentProfile.objects.create(
                 user=new_user,
@@ -24,19 +24,22 @@ def register(request):
                 course=request.POST.get('course'),
                 percentage=request.POST.get('percentage') or 0,
                 skills=request.POST.get('skills'),
-                resume=request.FILES.get('resume') # Handles the PDF
+                resume=request.FILES.get('resume')
             )
         elif u_type == "company":
             CompanyProfile.objects.create(
                 user=new_user,
-                company_name=u_name, # Using username as default company name
-                phone=request.POST.get('phone')
+                company_name=request.POST.get('company_name'), # Must match HTML name
+                phone=request.POST.get('phone'),               # Matches your models.py
+                website=request.POST.get('website', ''),
+                industry=request.POST.get('industry', 'IT')
             )
 
-        messages.success(request, "Registration successful! Please login.")
+        messages.success(request, "Account created successfully! Please login.")
         return redirect('login')
-
+    
     return render(request, 'register.html')
+        
 
 # 2. FIXED LOGIN VIEW FOR HTML FORMS
 from django.shortcuts import render, redirect
