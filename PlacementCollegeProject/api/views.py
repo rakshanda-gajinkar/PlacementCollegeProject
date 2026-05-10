@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from .models import StudentProfile, CompanyProfile
+from .models import Job
+
 
 # 1. FIXED REGISTER VIEW FOR HTML FORMS
 # Replace your old register function with this:
@@ -145,3 +147,8 @@ def company_applicants(request):
 def logout_view(request):
     auth_logout(request)
     return redirect('index')
+
+def home(request):
+    all_jobs = Job.objects.all()
+    print(f"DEBUG: Found {all_jobs.count()} jobs in database")
+    return render(request, 'index.html',{'jobs':all_jobs})

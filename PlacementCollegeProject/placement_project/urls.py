@@ -8,6 +8,6 @@ urlpatterns = [
     
     # Connect your 3 core authentications
     path('', views.index, name='index'), # Root address http://127.0.0.1:8000/ landing page path
-    path('api/',include('api.urls')),
+    path('',include('api.urls')),
     
 ]
