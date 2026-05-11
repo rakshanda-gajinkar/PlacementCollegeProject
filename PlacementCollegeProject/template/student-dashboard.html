@@ -22,10 +22,25 @@
     </div>
 
     <div class="main-content">
-        <div class="header">
+        <div class="main-content">
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
             <h1>Student Dashboard</h1>
-            <p>Welcome back! Here's your placement overview.</p>
+            <p>Welcome back, <strong>{{ request.user.username }}</strong>!</p>
         </div>
+        
+        <div class="user-profile" style="display: flex; align-items: center; gap: 10px;">
+            <div class="user-info" style="text-align: right;">
+                <p style="margin: 0; font-weight: bold;">{{ request.user.get_full_name|default:request.user.username }}</p>
+                <small style="color: gray;">Student ID: {{ student.id|default:"N/A" }}</small>
+            </div>
+            <a href="{% url 'student_profile' %}">
+                <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=random" 
+                     alt="Profile" 
+                     style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #007bff;">
+            </a>
+        </div>
+    </div>
 
         <div class="cards">
             <div class="card"><h3>Total Jobs</h3><p>{{ total_jobs_count }}</p></div>

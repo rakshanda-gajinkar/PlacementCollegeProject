@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from .models import StudentProfile, CompanyProfile
-from .models import Job
+from .models import Job,StudentProfile,Application
 from django.contrib.auth.decorators import login_required 
 
 
@@ -116,7 +116,23 @@ def index(request):
 #4. Student module functions
 @login_required
 def student_dashboard(request):
-    return render(request, 'student-dashboard.html')
+    # Fetch the profile for the logged-in user
+    try:
+        student = StudentProfile.objects.get(user=request.user)
+    except StudentProfile.DoesNotExist:
+        student = None
+
+    # Get counts for your cards
+    total_jobs_count = Job.objects.count()
+    applied_count = Application.objects.filter(student=student).count()
+    
+    context = {
+        'student': student,
+        'total_jobs_count': total_jobs_count,
+        'applied_count': applied_count,
+        # Add your other counts here...
+    }
+    return render(request, 'student-dashboard.html', context)
 
 def student_profile(request):
     return render(request, 'student-profile.html')
